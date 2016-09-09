@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Protocolo</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cerulean.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<link rel="stylesheet"
+      href="site_libs/highlight/default.css"
+      type="text/css" />
+<script src="site_libs/highlight/highlight.js"></script>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.9em;
+  padding-left: 5px;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">14-INV-323</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Protocolo</a>
+</li>
+<li>
+  <a href="datos.html">Base de Datos</a>
+</li>
+<li>
+  <a href="resultados.html">Resultados Preliminares</a>
+</li>
+<li>
+  <a href="atlas.html">Atlas</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Protocolo</h1>
+
+</div>
+
+
+<div id="descripcion" class="section level3">
+<h3>Descripción</h3>
+<p>Esta sección contiene el protocolo utilizado para la ejecución del Proyecto “Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene”, gestionado por la Dirección de Investigación &amp; Divulgación Científica de la Universidad del Norte. El Programa se ejecuta dentro del <em>Programa Paraguayo para el Desarrollo de la Ciencia y la Tecnología</em> (PROCIENCIA), Proyecto 14-INV-323, con fondos adjudicados por el <em>Consejo Nacional de Ciencia y Tecnología</em> (CONACYT) de la República del Paraguay según Resolución Nº 437/2014.</p>
+<hr />
+</div>
+<div id="equipo-de-investigadores" class="section level3">
+<h3>Equipo de investigadores</h3>
+<p>El Investigador Principal del proyecto es el <strong>Prof. Dr. Alcides Chaux</strong>, Director de Investigación &amp; Divulgación Científica de la Universidad del Norte. El Investigador Principal está a cargo del diseño y supervisión del proyecto, del análisis de datos, y de la redacción de informes de investigación y documentos relacionados. Se cuenta además con un Asistente de Investigación (contratado).</p>
+<hr />
+</div>
+<div id="objetivos-del-proyecto" class="section level3">
+<h3>Objetivos del proyecto</h3>
+<div id="objetivos-principales" class="section level4">
+<h4>Objetivos principales</h4>
+<p>Los objetivos principales de este proyecto pueden agruparse en 2 categorías:</p>
+<ul>
+<li>Incrementar el conocimiento acerca de la biología molecular del cáncer de pene, con énfasis en la evaluación del ciclo celular.</li>
+<li>Ofrecer un programa de entrenamiento efectivo en investigación científica, orientado a la adquisición de habilidades concretas para el diseño, gestión y ejecución de proyectos de investigación.</li>
+</ul>
+</div>
+<div id="objetivos-principales-especificos" class="section level4">
+<h4>Objetivos principales específicos</h4>
+<p>Los objetivos específicos de este proyecto pueden agruparse en 2 categorías:</p>
+<ul>
+<li>Evaluar visual y digitalmente la expresión inmunohistoquímica de proteínas relacionadas al ciclo celular en carcinomas escamosos del pene, determinando su asociación con características histopatológicas y virales.</li>
+<li>Entrenar en el diseño de proyectos de investigación, recolección de datos, morfología y biología molecular del cáncer de pene, análisis estadístico de datos, programación en R, utilización de RStudio, herramientas de ciencia de datos, interpretación de resultados, y redacción y publicación de informes de investigación.</li>
+</ul>
+<hr />
+</div>
+</div>
+<div id="antecedentes" class="section level3">
+<h3>Antecedentes</h3>
+<p>Debido a factores aún no totalmente caracterizados el cáncer de pene presenta una alta incidencia en el Paraguay comparada con la observada en países desarrollados.<span class="citation"><sup>1</sup></span> Esto permite la explotación de un nicho de investigación centrado en la patología del cáncer de pene en nuestro país. Tras varios años de estar realizando investigaciones en la morfología, características clínicas y epidemiológicas, y factores pronósticos patológicos<span class="citation"><sup>2</sup></span> hemos incursionado en el campo de la biología molecular del cáncer de pene.<span class="citation"><sup>3–6</sup></span></p>
+<p>Uno de los problemas principales dentro de este tópico es la falta de información detallada y profunda acerca de la biología molecular del cáncer de pene. El conocimiento acabado acerca de la biología del cáncer de pene permitiría comprender cómo se origina y por qué presenta las particularidades epidemiológicas observadas. Más aún, este conocimiento podría ser útil para el desarrollo de estrategias clínicas más efectivas, con diagnósticos más significativos y tratamientos mejor orientados.<span class="citation"><sup>7</sup></span></p>
+<p>Dentro de nuestro programa de investigación en cáncer de pene hemos recolectado a lo largo de dos décadas más de 100 muestras de tejido tumoral y construido a partir de estas muestras 4 microarrays tisulares (TMA, por <em>tissue microarray</em>). Utilizando estos 4 TMA hemos iniciado hace 2 años nuestra investigación en la biología molecular del cáncer de pene, estudiando varias vías metabólicas tales como las de blanco de rapamicina en mamíferos y la del receptor epidérmico del factor de crecimiento.<span class="citation"><sup>3,4</sup></span> Hemos estado publicando los resultados de estas investigaciones en revistas internacionales indexadas evaluadas por pares, estableciéndonos firmemente en el frente de avance de esta área de la Ciencia. Sin embargo, aún quedan muchas vías metabólicas por estudiar, sobre todo las directamente relacionadas con el control del crecimiento y diferenciación de las células tumorales.</p>
+<p>Considerando la escasa tradición científica seria en el campo de la biología molecular del cáncer en nuestro país y la imperiosa necesidad de educar una generación de nuevos científicos, proponemos este proyecto denominado “Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene”. Mediante este proyecto se entrenará a la Asistente de Investigación en el diseño de estudios de investigación, recolección de datos, análisis estadístico y programación de paquetes informáticos, interpretación de resultados, y redacción y presentación de informes de investigación. Este entrenamiento estará centrado en la ejecución específica de este proyecto, por lo que se espera generar habilidades y capacidades efectivas para la investigación científica.</p>
+<hr />
+</div>
+<div id="marco-teorico" class="section level3">
+<h3>Marco teórico</h3>
+<p>El cáncer de pene es un tumor infrecuente en países desarrollados de Norteamérica y Europa, representando, sin embargo, un serio problema de salud pública en países en vías de desarrollo.<span class="citation"><sup>8,9</sup></span> La incidencia es particularmente alta en países como Brasil y Paraguay, donde las tasas son de hasta 4 veces mayores a las observadas en países del primer mundo.<span class="citation"><sup>1</sup></span></p>
+<p>No existen explicaciones satisfactorias para estas variaciones geográficas, pero factores de riesgo tales como la falta de circuncisión, fimosis, tabaquismo, antecedentes de desgarros peneanos, enfermedades inflamatorias crónicas, pobre higiene genital, y ciertas infecciones virales podrían tener alguna influencia en las regiones con mayor incidencia.<span class="citation"><sup>1,9</sup></span></p>
+<p>La mayoría de los cánceres peneanos son carcinomas escamosos, reconociéndose un variado espectro de subtipos histológicos distintos, cada uno con características clinicopatológicas y pronósticas particulares.<span class="citation"><sup>10</sup></span> El desarrollo del cáncer de pene sigue una vía patogénica bimodal, una asociada con la infección por el virus del papiloma humano (HPV) y otra independiente de la infección viral.<span class="citation"><sup>11</sup></span></p>
+<p>A pesar de que el cáncer de pene es más frecuentemente una enfermedad loco-regional, se observa diseminación sistémica y metástasis a distancia en hasta el 40% de los pacientes. En este contexto, la muerte por cáncer diseminado aparece habitualmente dentro de los 2 a 3 años del diagnóstico inicial.<span class="citation"><sup>12</sup></span> Mientras que la cirugía y la radioterapia son las opciones de elección en pacientes con tumores localizados, la quimioterapia es la opción principal para aquellos con enfermedad diseminada. Desafortunadamente, las tasas de respuesta al tratamiento quimioterapéutico están lejos de ser aceptables.<span class="citation"><sup>13</sup></span> Por lo tanto, se requieren de otros enfoques, especialmente aquellos que involucran el uso de terapias dirigidas.<span class="citation"><sup>7</sup></span></p>
+<p>Las terapias dirigidas han cambiado significativamente el tratamiento del cáncer durante los últimos 10 años. Al involucrar mecanismos de acción distintos a los de la quimioterapia citotóxica tradicional, suelen ser mejor toleradas, asociándose con menos efectos secundarios adversos. Estos fármacos son parte hoy en día del tratamiento de muchos tumores malignos.<span class="citation"><sup>7</sup></span></p>
+<p>Sin embargo, no existen protocolos de tratamiento dirigido para pacientes con cáncer de pene diseminado, principalmente por dos razones. La primera está relacionada con la rareza de estos tumores en países desarrollados en los que estos fármacos están en evaluación o aprobados para su uso clínico. La segunda se relaciona con la escasez de reportes de investigación estudiando la biología molecular del cáncer de pene, buscando identificar alteraciones en vías metabólicas que sean de interés para el desarrollo de terapias dirigidas.</p>
+<p>El propósito del presente proyecto es evaluar la expresión inmunohistoquímica de diversas proteínas involucradas en el control del ciclo celular en tumores peneanos, evaluando la asociación entre los niveles de expresión, las características histopatológicas y la presencia de HPV.</p>
+<hr />
+</div>
+<div id="plan-de-trabajo" class="section level3">
+<h3>Plan de trabajo</h3>
+<p>El tiempo de duración del proyecto es de 12 meses (2015-2016). Se evaluaron los niveles de expresión inmunohistoquímica de 4 proteínas relacionadas con el ciclo celular (p53, Ki67, ciclina D1 y MDM2) en 113 muestras tisulares de carcinomas escamosos.</p>
+<p>Las muestras tisulares fueron obtenidas de los casos de consulta del Investigador Principal y consistieron en tejido tumoral fijado en formol al 10% y embebido en parafina. A partir de estas muestras tisulares se confeccionaron 4 TMA en el TMA Lab Core de la Johns Hopkins University (Baltimore, MD), siguiendo un protocolo previamente publicado.<span class="citation"><sup>14</sup></span></p>
+<p>A partir de estos bloques de TMA se obtuvieron cortes tisulares que fueron teñidos con hematoxilina &amp; eosina (HE). Las tinciones inmunohistoquímicas fueron llevadas a cabo siguiendo protocolos previamente publicados.<span class="citation"><sup>15–18</sup></span> Los TMA correspondientes a las tinciones con HE e inmunohistoquímica se encuentran almacenadas en los archivos tisulares del Investigador Principal.</p>
+<p>La medición se realiza visualmente y mediante análisis digital de imágenes. Posteriormente se analizan estos niveles de expresión, evaluando su rol en la alteración del ciclo celular de las células tumorales y su asociación con características morfológicas del tumor. Este proceso requerirá el uso intensivo de herramientas de ciencias de datos tales como R/RStudio, ImageJ, MarkDown, y similares.</p>
+<p>La hipótesis básica de trabajo es que existen alteraciones específicas de vías metabólicas particulares en las células tumorales del carcinoma escamoso que son evidenciables de una forma más objetiva mediante el análisis digital de imágenes. Asimismo, existen correlaciones entre las expresiones inmunohistoquímicas de ciertas proteínas relacionadas al ciclo celular y las características morfológicas del tumor, lo que sugeriría mecanismos oncogénicos particulares y posiblemente blancos terapéuticos específicos.</p>
+<p>El uso de estos TMA para investigación fue aprobado por el Institutional Board Review (IBR) de la Johns Hopkins University (Baltimore, MD).</p>
+<p>El Proyecto estará dividido en 5 fases: diagnóstico de las lesiones tumorales, evaluación de microarrays tisulares, confección de la base de datos, análisis estadístico, y redacción del informe de investigación. Estas fases se describen a continuación.</p>
+<p><strong>1) Diagnóstico de las lesiones tumorales:</strong> Primeramente se procede a la clasificación de los 4 TMA disponibles conteniendo muestras tisulares de los casos de cáncer de pene. Se identifican las láminas histológicas completas correspondientes a estos casos y se procede a la clasificación histopatológica de las lesiones tumorales, usando criterios previamente establecidos.<span class="citation"><sup>2,10</sup></span> Esta evaluación se realiza sobre muestras tisulares teñidas con hematoxilina &amp; eosina.</p>
+<p><strong>2) Evaluación de microarrays tisulares:</strong> Una vez que todas las lesiones tumorales han sido clasificadas se procede a la evaluación visual de la expresión inmunohistoquímica de proteínas relacionadas con el ciclo celular. Esta evaluación se lleva a cabo en un microscopio Zeiss AxioLab 2. Se estima visualmente los niveles de expresión utilizando una escala semicuantitativa previamente desarrollada y validada.<span class="citation"><sup>19</sup></span> Tras la evaluación visual se procede a digitalizar los TMA, utilizando una técnica previamente descrita.<span class="citation"><sup>15</sup></span> Posteriormente se procede al análisis de las imágenes utilizando un protocolo de análisis digital previamente desarrollado y publicado.<span class="citation"><sup>3</sup></span></p>
+<p><strong>3) Confección de la base de datos:</strong> Tras la recolección de datos visuales y digitales se confecciona una base de datos en la que consigna toda la información recolectada hasta el momento, incluyendo los datos histopatológicos y la evaluación visual y digital de cada uno de los casos de cáncer de pene. Esta base de datos está disponible gratuitamente para todos los investigadores a través de este repositorio.</p>
+<p><strong>4) Análisis estadístico:</strong> Se procede al análisis estadístico de los datos. El análisis de datos se realiza utilizando el lenguaje de programación R.<span class="citation"><sup>20</sup></span> A través de este repositorio, se publica el código del análisis estadístico.</p>
+<p><strong>5) Redacción de informes de investigación:</strong> Como fase final se redacta el informe de investigación reportando los resultados del proyecto.</p>
+<hr />
+</div>
+<div id="relevancia" class="section level3">
+<h3>Relevancia</h3>
+<div id="relevancia-social" class="section level4">
+<h4>Relevancia social</h4>
+<p>La implementación de este Proyecto sobre la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” permitirá obtener un conocimiento más acabado y preciso acerca de la biología molecular del cáncer. Este Proyecto ayudará no sólo a comprender mejor cómo se origina y progresa la enfermedad sino también dará pistas acerca de cómo ofrecer mejores opciones terapéuticas a los pacientes afectos.</p>
+<p>Considerando que el Paraguay es uno de los países con la incidencia más alta de cáncer de pene en el mundo, la importancia social de este conocimiento es evidente. Más aún, considerando que las muestras de tejido tumoral corresponden a pacientes paraguayos, esto permitirá que los resultados sean aplicables directamente a los pacientes afectos, ya que no se trataría de información importada o llevada a cabo en otras poblaciones.</p>
+</div>
+<div id="relevancia-cientifica" class="section level4">
+<h4>Relevancia científica</h4>
+<p>Debido a la rareza del cáncer de pene en países desarrollados el conocimiento disponible acerca de su biología molecular es escaso. Este Proyecto sobre la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” permitirá estudiar los niveles de expresión inmunohistoquímica de proteínas relacionadas al ciclo celular, investigando alteraciones metabólicas en células tumorales y evaluando su asociación con características histopatológicas y virales. Todo esto permitirá incrementar el conocimiento científico disponible acerca de la enfermedad.</p>
+<p>Además, este Proyecto permitirá continuar con nuestra línea de investigación en el cáncer de pene, dentro de un programa de iniciación científica, ofreciendo un entrenamiento formal en ciencia de datos e incrementando por lo tanto el capital humano disponible para realizar investigación.</p>
+</div>
+<div id="relevancia-contemporanea" class="section level4">
+<h4>Relevancia contemporánea</h4>
+<p>El conocimiento puramente morfológico o clínico ya no es suficiente hoy en día para comprender una enfermedad, mucho menos para su adecuado diagnóstico y tratamiento. Actualmente se requiere un conocimiento más profundo acerca de la biología molecular de las enfermedades, buscando mejores modelos teóricos mediante los cuales desarrollar estrategias más efectivas para el manejo de los pacientes.</p>
+<p>Dentro de esta línea, este Proyecto sobre la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” evaluará uno de los aspectos más importantes de la biología molecular del cáncer, el control del ciclo celular.</p>
+<hr />
+</div>
+</div>
+<div id="estrategia-de-divulgacion" class="section level3">
+<h3>Estrategia de divulgación</h3>
+<p>Este Proyecto acerca de la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” incrementará el conocimiento que se tiene acerca de la biología molecular del cáncer de pene. Este Proyecto permitirá una mejor comprensión de la relación existente entre las características morfológicas y virales de las células tumorales y el control del ciclo celular. Mediante esto, este Proyecto permitirá evaluar y validar estudios similares que se han o se están llevando a cabo centrados en el área de investigación del cáncer de pene. Todos estos resultados serán puestos a disposición de la comunidad científica nacional e internacional y del público en general interesado de manera abierta y gratuita.</p>
+<p>Se buscará la difusión de los resultados de esta investigación mediante canales académicos y no académicos. En el ámbito académico, los resultados se divulgarán mediante Congresos y Simposios, ya sea organizados por la Universidad del Norte u otras instituciones académicas, y el reporte de investigación final será enviado para publicación a una revista científica internacional indexada evaluada por pares y con opción de acceso libre al artículo publicado. En el ámbito no académico, estos resultados se divulgarán al público en general mediante entrevistas radiales y televisivas, además de medios impresos y digitales, y redes sociales.</p>
+<hr />
+</div>
+<div id="referencias" class="section level3 unnumbered">
+<h3>Referencias</h3>
+<div id="refs" class="references">
+<div id="ref-Chaux2013">
+<p>1. Chaux A, Netto GJ, Rodríguez IM, et al. Epidemiologic profile, sexual history, pathologic features, and human papillomavirus status of 103 patients with penile carcinoma. <em>World J Urol</em>. 2013;31(4):861-867. doi:<a href="https://doi.org/10.1007/s00345-011-0802-0">10.1007/s00345-011-0802-0</a>.</p>
+</div>
+<div id="ref-Chaux2010b">
+<p>2. Chaux A, Velazquez EF, Algaba F, Ayala G, Cubilla AL. Developments in the pathology of penile squamous cell carcinomas. <em>Urology</em>. 2010;76(2 Suppl 1):S7-S14. doi:<a href="https://doi.org/10.1016/j.urology.2010.02.038">10.1016/j.urology.2010.02.038</a>.</p>
+</div>
+<div id="ref-Chaux2013a">
+<p>3. Chaux A, Munari E, Katz B, et al. The epidermal growth factor receptor is frequently overexpressed in penile squamous cell carcinomas: A tissue microarray and digital image analysis study of 112 cases. <em>Hum Pathol</em>. 2013;44(12):2690-2695. doi:<a href="https://doi.org/10.1016/j.humpath.2013.07.012">10.1016/j.humpath.2013.07.012</a>.</p>
+</div>
+<div id="ref-Chaux2014">
+<p>4. Chaux A, Munari E, Cubilla AL, et al. Immunohistochemical expression of the mammalian target of rapamycin pathway in penile squamous cell carcinomas: A tissue microarray study of 112 cases. <em>Histopathology</em>. 2014;64(6):863-871. doi:<a href="https://doi.org/10.1111/his.12338">10.1111/his.12338</a>.</p>
+</div>
+<div id="ref-Bezerra2014">
+<p>5. Bezerra SM, Chaux A, Ball MW, et al. Human papillomavirus infection and immunohistochemical p16INK4a expression as predictors of outcome in penile squamous cell carcinomas. <em>Hum Pathol</em>. 2014;46(4):532-540. doi:<a href="https://doi.org/10.1016/j.humpath.2014.12.004">10.1016/j.humpath.2014.12.004</a>.</p>
+</div>
+<div id="ref-Faraj2015">
+<p>6. Faraj SF, Chaux A, Gonzalez-Roibon N, et al. Immunohistochemical expression of ARID1A in penile squamous cell carcinomas: a tissue microarray study of 112 cases. <em>Hum Pathol</em>. 2015;46(5):761-766. doi:<a href="https://doi.org/10.1016/j.humpath.2015.01.018">10.1016/j.humpath.2015.01.018</a>.</p>
+</div>
+<div id="ref-Gerber2008">
+<p>7. Gerber DE. Targeted therapies: A new generation of cancer treatments. 2008;77:311-319. <a href="http://www.ncbi.nlm.nih.gov/pubmed/18297955" class="uri">http://www.ncbi.nlm.nih.gov/pubmed/18297955</a>.</p>
+</div>
+<div id="ref-Siegel2015">
+<p>8. Siegel RL, Miller KD, Jemal A. Cancer statistics, 2015. <em>CA Cancer J Clin</em>. 2015;65(1):5-29. doi:<a href="https://doi.org/10.3322/caac.21254">10.3322/caac.21254</a>.</p>
+</div>
+<div id="ref-Bleeker2009">
+<p>9. Bleeker MCG, Heideman DAM, Snijders PJF, Horenblas S, Dillner J, Meijer CJLM. Penile cancer: Epidemiology, pathogenesis and prevention. 2009;27:141-150. doi:<a href="https://doi.org/10.1007/s00345-008-0302-z">10.1007/s00345-008-0302-z</a>.</p>
+</div>
+<div id="ref-Chaux2012">
+<p>10. Chaux A, Cubilla AL. Advances in the pathology of penile carcinomas. 2012;43:771-789. doi:<a href="https://doi.org/10.1016/j.humpath.2012.01.014">10.1016/j.humpath.2012.01.014</a>.</p>
+</div>
+<div id="ref-Chaux2012a">
+<p>11. Chaux A, Cubilla AL. The role of human papillomavirus infection in the pathogenesis of penile squamous cell carcinomas. <em>Semin Diagn Pathol</em>. 2012;29(2):67-71. doi:<a href="https://doi.org/10.1053/j.semdp.2011.09.001">10.1053/j.semdp.2011.09.001</a>.</p>
+</div>
+<div id="ref-Pizzocaro2010">
+<p>12. Pizzocaro G, Algaba F, Horenblas S, et al. EAU penile cancer guidelines 2009. <em>Eur Urol</em>. 2010;57(6):1002-1012. doi:<a href="https://doi.org/10.1016/j.eururo.2010.01.039">10.1016/j.eururo.2010.01.039</a>.</p>
+</div>
+<div id="ref-Sonpavde2013">
+<p>13. Sonpavde G, Pagliaro LC, Buonerba C, Dorff TB, Lee RJ, Di Lorenzo G. Penile cancer: Current therapy and future directions. 2013;24:1179-1189. doi:<a href="https://doi.org/10.1093/annonc/mds635">10.1093/annonc/mds635</a>.</p>
+</div>
+<div id="ref-Fedor2005">
+<p>14. Fedor HL, De Marzo AM. Practical methods for tissue microarray construction. <em>Methods Mol Med</em>. 2005;103:89-101. <a href="http://www.ncbi.nlm.nih.gov/pubmed/15542899" class="uri">http://www.ncbi.nlm.nih.gov/pubmed/15542899</a>.</p>
+</div>
+<div id="ref-Chaux2014a">
+<p>15. Chaux A, Cubilla AL, Haffner MC, et al. Combining routine morphology, p16INK4a immunohistochemistry, and in situ hybridization for the detection of human papillomavirus infection in penile carcinomas: A tissue microarray study using classifier performance analyses. 2014;32:171-177. doi:<a href="https://doi.org/10.1016/j.urolonc.2012.04.017">10.1016/j.urolonc.2012.04.017</a>.</p>
+</div>
+<div id="ref-Chaux2013c">
+<p>16. Chaux A, Han JS, Lee S, et al. Immunohistochemical profile of the penile urethra and differential expression of GATA3 in urothelial versus squamous cell carcinomas of the penile urethra. <em>Hum Pathol</em>. 2013;44(12):2760-2767. doi:<a href="https://doi.org/10.1016/j.humpath.2013.07.023">10.1016/j.humpath.2013.07.023</a>.</p>
+</div>
+<div id="ref-Munari2015">
+<p>17. Munari E, Chaux A, Maldonado L, et al. Cyclin A1 expression predicts progression in pT1 urothelial carcinoma of bladder: a tissue microarray study of 149 patients treated by transurethral resection. <em>Histopathology</em>. 2015;66(2):262-269. doi:<a href="https://doi.org/10.1111/his.12499">10.1111/his.12499</a>.</p>
+</div>
+<div id="ref-Bezerra2015">
+<p>18. Bezerra SM, Chaux A, Ball MW, et al. Human papillomavirus infection and immunohistochemical p16(INK4a) expression as predictors of outcome in penile squamous cell carcinomas. <em>Hum Pathol</em>. 2015;46(4):532-540. doi:<a href="https://doi.org/10.1016/j.humpath.2014.12.004">10.1016/j.humpath.2014.12.004</a>.</p>
+</div>
+<div id="ref-Chaux2013b">
+<p>19. Chaux A, Compérat E, Varinot J, et al. High levels of phosphatase and tensin homolog expression are associated with tumor progression, tumor recurrence, and systemic metastases in pt1 urothelial carcinoma of the bladder: A tissue microarray study of 156 patients treated by transurethral resect. In: <em>Urology</em>. Vol 81.; 2013:116-122. doi:<a href="https://doi.org/10.1016/j.urology.2012.09.007">10.1016/j.urology.2012.09.007</a>.</p>
+</div>
+<div id="ref-RCoreTeam">
+<p>20. R Core Team. R: A Language and Environment for Statistical Computing. <a href="http://www.r-project.org/" class="uri">http://www.r-project.org/</a>.</p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+$(document).ready(function () {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
