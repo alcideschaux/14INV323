@@ -11,7 +11,7 @@
 
 
 
-<title>Atlas</title>
+<title>Estadística correlativa</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -329,61 +329,81 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Atlas</h1>
+<h1 class="title toc-ignore">Estadística correlativa</h1>
 
 </div>
 
 
-<p>En esta sección se incluye fotografías, capturas de pantalla y microfotografías documentando y evidenciando el procedimiento utilizado para la inspección visual y la evaluación digital de la expresión imunohistoquímica de proteínas relacionadas con el cáncer de pene.</p>
+<p><strong>Fecha de última actualización:</strong> 2017-08-23</p>
 <hr />
-<div id="hematoxilina-eosina" class="section level2">
-<h2>Hematoxilina &amp; eosina</h2>
-<div class="figure">
-<img src="fig/tma.jpg" alt="Microarray tisular (hematoxilina y eosina, x10). Microfotografía a bajo aumento mostrando los focos de tejido que componen el microarray tisular (MAT). Cada foco del MAT corresponde a un cilindro de 3 mm de tejido tumoral seccionado transversalmente." />
-<p class="caption"><strong>Microarray tisular (hematoxilina y eosina, x10).</strong> Microfotografía a bajo aumento mostrando los focos de tejido que componen el microarray tisular (MAT). Cada foco del MAT corresponde a un cilindro de 3 mm de tejido tumoral seccionado transversalmente.</p>
-</div>
+<pre class="r"><code># Librerías
+library(simpleR)
+library(tidyr)
+library(corrplot)
+library(PerformanceAnalytics)
+
+# Opciones globales
+opts_chunk$set(message = FALSE, warning = FALSE)
+
+# Datos y guiones
+load(&quot;../Data/323.Rdata&quot;)
+
+# Valores P para las matrices
+cor.mtest &lt;- function(mat, conf.level = 0.95){
+  mat &lt;- as.matrix(mat)
+    n &lt;- ncol(mat)
+    p.mat &lt;- lowCI.mat &lt;- uppCI.mat &lt;- matrix(NA, n, n)
+    diag(p.mat) &lt;- 0
+    diag(lowCI.mat) &lt;- diag(uppCI.mat) &lt;- 1
+    for(i in 1:(n-1)){
+        for(j in (i+1):n){
+            tmp &lt;- cor.test(mat[,i], mat[,j], conf.level = conf.level)
+            p.mat[i,j] &lt;- p.mat[j,i] &lt;- tmp$p.value
+            lowCI.mat[i,j] &lt;- lowCI.mat[j,i] &lt;- tmp$conf.int[1]
+            uppCI.mat[i,j] &lt;- uppCI.mat[j,i] &lt;- tmp$conf.int[2]
+        }
+    }
+    return(list(p.mat, lowCI.mat, uppCI.mat))
+}</code></pre>
+<div id="matrices-de-correlacion" class="section level1">
+<h1>Matrices de correlación</h1>
+<pre class="r"><code>df &lt;- DF %&gt;% select(p53v:m2d)
+M &lt;- df %&gt;% cor(use = &quot;complete.obs&quot;)
+res &lt;- cor.mtest(df)</code></pre>
+<div id="coeficientes-de-correlacion" class="section level2">
+<h2>Coeficientes de correlación</h2>
+<pre class="r"><code>corrplot(M, method = &quot;number&quot;)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_coef-1.png" width="672" /></p>
+<pre class="r"><code>corrplot(M)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_coef-2.png" width="672" /></p>
+<pre class="r"><code>corrplot.mixed(M, lower = &quot;color&quot;, upper = &quot;number&quot;)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_coef-3.png" width="672" /></p>
 <hr />
-<div class="figure">
-<img src="fig/he.jpg" alt="Microarray tisular (hematoxilina &amp; eosina, x50). Microfotografía a mediano aumento mostrando el aspecto histológico de un carcinoma escamoso infiltrante de tipo usual moderadamente diferenciado." />
-<p class="caption"><strong>Microarray tisular (hematoxilina &amp; eosina, x50).</strong> Microfotografía a mediano aumento mostrando el aspecto histológico de un carcinoma escamoso infiltrante de tipo usual moderadamente diferenciado.</p>
 </div>
+<div id="valores-p" class="section level2">
+<h2>Valores P</h2>
+<pre class="r"><code>corrplot(M, p.mat = res[[1]], insig = &quot;p-value&quot;, sig.level = -1)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_pvalues-1.png" width="672" /></p>
 <hr />
 </div>
-<div id="inspeccion-visual" class="section level2">
-<h2>Inspección visual</h2>
-<div class="figure">
-<img src="fig/p53.jpg" alt="Expresión inmunohistoquímica de p53 (DAB, x50). Foco de microarray tisular mostrando células tumorales positivas para p53 teñidas de marrón. La tinción es exclusivamente nuclear." />
-<p class="caption"><strong>Expresión inmunohistoquímica de p53 (DAB, x50).</strong> Foco de microarray tisular mostrando células tumorales positivas para p53 teñidas de marrón. La tinción es exclusivamente nuclear.</p>
-</div>
-<hr />
-<div class="figure">
-<img src="fig/ki67.jpg" alt="Expresión inmunohistoquímica de Ki-67 (DAB, x50). Foco de microarray tisular mostrando células tumorales positivas para Ki-67 teñidas de marrón. La tinción es exclusivamente nuclear." />
-<p class="caption"><strong>Expresión inmunohistoquímica de Ki-67 (DAB, x50).</strong> Foco de microarray tisular mostrando células tumorales positivas para Ki-67 teñidas de marrón. La tinción es exclusivamente nuclear.</p>
-</div>
-<hr />
-<div class="figure">
-<img src="fig/cycd1.jpg" alt="Expresión inmunohistoquímica de ciclina D1 (DAB, x50). Foco de microarray tisular mostrando algunas células tumorales positivas para ciclina D1 teñidas de marrón. La tinción es exclusivamente nuclear." />
-<p class="caption"><strong>Expresión inmunohistoquímica de ciclina D1 (DAB, x50).</strong> Foco de microarray tisular mostrando algunas células tumorales positivas para ciclina D1 teñidas de marrón. La tinción es exclusivamente nuclear.</p>
-</div>
-<hr />
-<div class="figure">
-<img src="fig/mdm2.jpg" alt="Expresión inmunohistoquímica de MDM2 (DAB, x50). Foco de microarray tisular mostrando células tumorales positivas para MDM2 teñidas de marrón. La tinción es exclusivamente nuclear." />
-<p class="caption"><strong>Expresión inmunohistoquímica de MDM2 (DAB, x50).</strong> Foco de microarray tisular mostrando células tumorales positivas para MDM2 teñidas de marrón. La tinción es exclusivamente nuclear.</p>
-</div>
+<div id="agrupacion-por-cumulos" class="section level2">
+<h2>Agrupación por cúmulos</h2>
+<pre class="r"><code>corrplot(M, method = &quot;color&quot;, order = &quot;hclust&quot;, addrect = 2)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_hclust-1.png" width="672" /></p>
 <hr />
 </div>
-<div id="evaluacion-digital" class="section level2">
-<h2>Evaluación digital</h2>
-<div class="figure">
-<img src="fig/imagej.png" alt="ImageJ con la extensión de ImmunoRatio. Captura de pantalla que muestra el procedimiento utilizado para la evaluación digital de los focos de los microarray tisulares. Se muestra la extensión de ImmunoRatio ejecutándose desde ImageJ sobre un sistema Linux Ubuntu 16.04 LTS." />
-<p class="caption"><strong>ImageJ con la extensión de <em>ImmunoRatio</em>.</strong> Captura de pantalla que muestra el procedimiento utilizado para la evaluación digital de los focos de los microarray tisulares. Se muestra la extensión de <em>ImmunoRatio</em> ejecutándose desde ImageJ sobre un sistema Linux Ubuntu 16.04 LTS.</p>
 </div>
+<div id="matriz-de-correlacion-global" class="section level1">
+<h1>Matriz de correlación global</h1>
+<pre class="r"><code>chart.Correlation(df, pch = 2)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_chart-1.png" width="672" /></p>
+<pre class="r"><code>col &lt;- colorRampPalette(c(&quot;blue&quot;, &quot;white&quot;, &quot;red&quot;))(20)</code></pre>
 <hr />
-<div class="figure">
-<img src="fig/output.jpg" alt="Hoja de resultado del análisis digital. Hoja de resultado del programa ImageJ utilizando la extensión de ImmunoRatio para estimar el porcentaje de células tumorales positivas para el marcador evaluado (p53 en este caso). El panel superior muestra 1 foco de microarray tisular y el panel inferior el resultado del análisis digital del foco correspondiente. En el área superior de cada imagen se indica el porcentaje estimado de positividad." />
-<p class="caption"><strong>Hoja de resultado del análisis digital.</strong> Hoja de resultado del programa ImageJ utilizando la extensión de <em>ImmunoRatio</em> para estimar el porcentaje de células tumorales positivas para el marcador evaluado (p53 en este caso). El panel superior muestra 1 foco de microarray tisular y el panel inferior el resultado del análisis digital del foco correspondiente. En el área superior de cada imagen se indica el porcentaje estimado de positividad.</p>
 </div>
-<hr />
+<div id="mapa-de-calor-con-agrupamiento-jerarquico" class="section level1">
+<h1>Mapa de calor con agrupamiento jerárquico</h1>
+<pre class="r"><code>heatmap(x = M, col = col, symm = TRUE)</code></pre>
+<p><img src="correlativa_files/figure-html/cor_heatmap-1.png" width="672" /></p>
 </div>
 
 

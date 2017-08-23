@@ -4,7 +4,7 @@
 
 <head>
 
-<meta charset="utf-8">
+<meta charset="utf-8" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 
@@ -22,12 +22,12 @@
 <script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
-<link rel="stylesheet"
-      href="site_libs/highlight/default.css"
-      type="text/css" />
-<script src="site_libs/highlight/highlight.js"></script>
 <style type="text/css">
   pre:not([class]) {
     background-color: white;
@@ -154,7 +154,6 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 <!-- tabsets -->
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script>
 $(document).ready(function () {
   window.buildTabsets("TOC");
@@ -162,7 +161,9 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 <script>
 $(document).ready(function () {
   window.initializeCodeFolding("hide" === "show");
@@ -186,7 +187,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
@@ -245,8 +246,9 @@ div.tocify {
 }
 
 .tocify-subheader .tocify-item {
-  font-size: 0.9em;
-  padding-left: 5px;
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
 }
 
 .tocify .list-group-item {
@@ -286,8 +288,23 @@ div.tocify {
 <li>
   <a href="datos.html">Base de Datos</a>
 </li>
-<li>
-  <a href="resultados.html">Resultados Preliminares</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Resultados
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="descriptiva.html">Estadística descriptiva</a>
+    </li>
+    <li>
+      <a href="asociativa.html">Estadística asociativa</a>
+    </li>
+    <li>
+      <a href="correlativa.html">Estadística correlativa</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="atlas.html">Atlas</a>
@@ -320,12 +337,20 @@ div.tocify {
 <div id="descripcion" class="section level3">
 <h3>Descripción</h3>
 <p>Esta sección contiene el protocolo utilizado para la ejecución del Proyecto “Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene”, gestionado por la Dirección de Investigación &amp; Divulgación Científica de la Universidad del Norte. El Programa se ejecuta dentro del <em>Programa Paraguayo para el Desarrollo de la Ciencia y la Tecnología</em> (PROCIENCIA), Proyecto 14-INV-323, con fondos adjudicados por el <em>Consejo Nacional de Ciencia y Tecnología</em> (CONACYT) de la República del Paraguay según Resolución Nº 437/2014.</p>
-<hr />
+<p> </p>
 </div>
 <div id="equipo-de-investigadores" class="section level3">
 <h3>Equipo de investigadores</h3>
-<p>El Investigador Principal del proyecto es el <strong>Prof. Dr. Alcides Chaux</strong>, Director de Investigación &amp; Divulgación Científica de la Universidad del Norte. El Investigador Principal está a cargo del diseño y supervisión del proyecto, del análisis de datos, y de la redacción de informes de investigación y documentos relacionados. Se cuenta además con un Asistente de Investigación (contratado).</p>
-<hr />
+<div id="investigador-principal" class="section level4">
+<h4>Investigador Principal</h4>
+<p>El Investigador Principal del proyecto es el <strong>Prof. Dr. Alcides Chaux</strong>, Director de Investigación &amp; Divulgación Científica de la Universidad del Norte. El Investigador Principal está a cargo del diseño y supervisión del proyecto, del análisis de datos, y de la redacción de informes de investigación y documentos relacionados.</p>
+<p> </p>
+</div>
+<div id="asistente-de-investigacion" class="section level4">
+<h4>Asistente de Investigación</h4>
+<p>La Asistente de Investigación es la <strong>Bioq. Anahí Martínez de Chaux</strong>. La Asistente de Investigación está a cargo del manejo de la toma de muestras, interpretación de los resultados de los estudios laboratoriales, recolección y análisis de datos, y redacción de informes de investigación y documentos relacionados.</p>
+<p> </p>
+</div>
 </div>
 <div id="objetivos-del-proyecto" class="section level3">
 <h3>Objetivos del proyecto</h3>
@@ -336,6 +361,7 @@ div.tocify {
 <li>Incrementar el conocimiento acerca de la biología molecular del cáncer de pene, con énfasis en la evaluación del ciclo celular.</li>
 <li>Ofrecer un programa de entrenamiento efectivo en investigación científica, orientado a la adquisición de habilidades concretas para el diseño, gestión y ejecución de proyectos de investigación.</li>
 </ul>
+<p> </p>
 </div>
 <div id="objetivos-principales-especificos" class="section level4">
 <h4>Objetivos principales específicos</h4>
@@ -344,7 +370,7 @@ div.tocify {
 <li>Evaluar visual y digitalmente la expresión inmunohistoquímica de proteínas relacionadas al ciclo celular en carcinomas escamosos del pene, determinando su asociación con características histopatológicas y virales.</li>
 <li>Entrenar en el diseño de proyectos de investigación, recolección de datos, morfología y biología molecular del cáncer de pene, análisis estadístico de datos, programación en R, utilización de RStudio, herramientas de ciencia de datos, interpretación de resultados, y redacción y publicación de informes de investigación.</li>
 </ul>
-<hr />
+<p> </p>
 </div>
 </div>
 <div id="antecedentes" class="section level3">
@@ -353,7 +379,7 @@ div.tocify {
 <p>Uno de los problemas principales dentro de este tópico es la falta de información detallada y profunda acerca de la biología molecular del cáncer de pene. El conocimiento acabado acerca de la biología del cáncer de pene permitiría comprender cómo se origina y por qué presenta las particularidades epidemiológicas observadas. Más aún, este conocimiento podría ser útil para el desarrollo de estrategias clínicas más efectivas, con diagnósticos más significativos y tratamientos mejor orientados.<span class="citation"><sup>7</sup></span></p>
 <p>Dentro de nuestro programa de investigación en cáncer de pene hemos recolectado a lo largo de dos décadas más de 100 muestras de tejido tumoral y construido a partir de estas muestras 4 microarrays tisulares (TMA, por <em>tissue microarray</em>). Utilizando estos 4 TMA hemos iniciado hace 2 años nuestra investigación en la biología molecular del cáncer de pene, estudiando varias vías metabólicas tales como las de blanco de rapamicina en mamíferos y la del receptor epidérmico del factor de crecimiento.<span class="citation"><sup>3,4</sup></span> Hemos estado publicando los resultados de estas investigaciones en revistas internacionales indexadas evaluadas por pares, estableciéndonos firmemente en el frente de avance de esta área de la Ciencia. Sin embargo, aún quedan muchas vías metabólicas por estudiar, sobre todo las directamente relacionadas con el control del crecimiento y diferenciación de las células tumorales.</p>
 <p>Considerando la escasa tradición científica seria en el campo de la biología molecular del cáncer en nuestro país y la imperiosa necesidad de educar una generación de nuevos científicos, proponemos este proyecto denominado “Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene”. Mediante este proyecto se entrenará a la Asistente de Investigación en el diseño de estudios de investigación, recolección de datos, análisis estadístico y programación de paquetes informáticos, interpretación de resultados, y redacción y presentación de informes de investigación. Este entrenamiento estará centrado en la ejecución específica de este proyecto, por lo que se espera generar habilidades y capacidades efectivas para la investigación científica.</p>
-<hr />
+<p> </p>
 </div>
 <div id="marco-teorico" class="section level3">
 <h3>Marco teórico</h3>
@@ -364,11 +390,11 @@ div.tocify {
 <p>Las terapias dirigidas han cambiado significativamente el tratamiento del cáncer durante los últimos 10 años. Al involucrar mecanismos de acción distintos a los de la quimioterapia citotóxica tradicional, suelen ser mejor toleradas, asociándose con menos efectos secundarios adversos. Estos fármacos son parte hoy en día del tratamiento de muchos tumores malignos.<span class="citation"><sup>7</sup></span></p>
 <p>Sin embargo, no existen protocolos de tratamiento dirigido para pacientes con cáncer de pene diseminado, principalmente por dos razones. La primera está relacionada con la rareza de estos tumores en países desarrollados en los que estos fármacos están en evaluación o aprobados para su uso clínico. La segunda se relaciona con la escasez de reportes de investigación estudiando la biología molecular del cáncer de pene, buscando identificar alteraciones en vías metabólicas que sean de interés para el desarrollo de terapias dirigidas.</p>
 <p>El propósito del presente proyecto es evaluar la expresión inmunohistoquímica de diversas proteínas involucradas en el control del ciclo celular en tumores peneanos, evaluando la asociación entre los niveles de expresión, las características histopatológicas y la presencia de HPV.</p>
-<hr />
+<p> </p>
 </div>
 <div id="plan-de-trabajo" class="section level3">
 <h3>Plan de trabajo</h3>
-<p>El tiempo de duración del proyecto es de 12 meses (2015-2016). Se evaluaron los niveles de expresión inmunohistoquímica de 4 proteínas relacionadas con el ciclo celular (p53, Ki67, ciclina D1 y MDM2) en 113 muestras tisulares de carcinomas escamosos.</p>
+<p>Se evaluaron los niveles de expresión inmunohistoquímica de 4 proteínas relacionadas con el ciclo celular (p53, Ki67, ciclina D1 y MDM2) en 113 muestras tisulares de carcinomas escamosos.</p>
 <p>Las muestras tisulares fueron obtenidas de los casos de consulta del Investigador Principal y consistieron en tejido tumoral fijado en formol al 10% y embebido en parafina. A partir de estas muestras tisulares se confeccionaron 4 TMA en el TMA Lab Core de la Johns Hopkins University (Baltimore, MD), siguiendo un protocolo previamente publicado.<span class="citation"><sup>14</sup></span></p>
 <p>A partir de estos bloques de TMA se obtuvieron cortes tisulares que fueron teñidos con hematoxilina &amp; eosina (HE). Las tinciones inmunohistoquímicas fueron llevadas a cabo siguiendo protocolos previamente publicados.<span class="citation"><sup>15–18</sup></span> Los TMA correspondientes a las tinciones con HE e inmunohistoquímica se encuentran almacenadas en los archivos tisulares del Investigador Principal.</p>
 <p>La medición se realiza visualmente y mediante análisis digital de imágenes. Posteriormente se analizan estos niveles de expresión, evaluando su rol en la alteración del ciclo celular de las células tumorales y su asociación con características morfológicas del tumor. Este proceso requerirá el uso intensivo de herramientas de ciencias de datos tales como R/RStudio, ImageJ, MarkDown, y similares.</p>
@@ -380,7 +406,7 @@ div.tocify {
 <p><strong>3) Confección de la base de datos:</strong> Tras la recolección de datos visuales y digitales se confecciona una base de datos en la que consigna toda la información recolectada hasta el momento, incluyendo los datos histopatológicos y la evaluación visual y digital de cada uno de los casos de cáncer de pene. Esta base de datos está disponible gratuitamente para todos los investigadores a través de este repositorio.</p>
 <p><strong>4) Análisis estadístico:</strong> Se procede al análisis estadístico de los datos. El análisis de datos se realiza utilizando el lenguaje de programación R.<span class="citation"><sup>20</sup></span> A través de este repositorio, se publica el código del análisis estadístico.</p>
 <p><strong>5) Redacción de informes de investigación:</strong> Como fase final se redacta el informe de investigación reportando los resultados del proyecto.</p>
-<hr />
+<p> </p>
 </div>
 <div id="relevancia" class="section level3">
 <h3>Relevancia</h3>
@@ -388,24 +414,26 @@ div.tocify {
 <h4>Relevancia social</h4>
 <p>La implementación de este Proyecto sobre la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” permitirá obtener un conocimiento más acabado y preciso acerca de la biología molecular del cáncer. Este Proyecto ayudará no sólo a comprender mejor cómo se origina y progresa la enfermedad sino también dará pistas acerca de cómo ofrecer mejores opciones terapéuticas a los pacientes afectos.</p>
 <p>Considerando que el Paraguay es uno de los países con la incidencia más alta de cáncer de pene en el mundo, la importancia social de este conocimiento es evidente. Más aún, considerando que las muestras de tejido tumoral corresponden a pacientes paraguayos, esto permitirá que los resultados sean aplicables directamente a los pacientes afectos, ya que no se trataría de información importada o llevada a cabo en otras poblaciones.</p>
+<p> </p>
 </div>
 <div id="relevancia-cientifica" class="section level4">
 <h4>Relevancia científica</h4>
 <p>Debido a la rareza del cáncer de pene en países desarrollados el conocimiento disponible acerca de su biología molecular es escaso. Este Proyecto sobre la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” permitirá estudiar los niveles de expresión inmunohistoquímica de proteínas relacionadas al ciclo celular, investigando alteraciones metabólicas en células tumorales y evaluando su asociación con características histopatológicas y virales. Todo esto permitirá incrementar el conocimiento científico disponible acerca de la enfermedad.</p>
 <p>Además, este Proyecto permitirá continuar con nuestra línea de investigación en el cáncer de pene, dentro de un programa de iniciación científica, ofreciendo un entrenamiento formal en ciencia de datos e incrementando por lo tanto el capital humano disponible para realizar investigación.</p>
+<p> </p>
 </div>
 <div id="relevancia-contemporanea" class="section level4">
 <h4>Relevancia contemporánea</h4>
 <p>El conocimiento puramente morfológico o clínico ya no es suficiente hoy en día para comprender una enfermedad, mucho menos para su adecuado diagnóstico y tratamiento. Actualmente se requiere un conocimiento más profundo acerca de la biología molecular de las enfermedades, buscando mejores modelos teóricos mediante los cuales desarrollar estrategias más efectivas para el manejo de los pacientes.</p>
 <p>Dentro de esta línea, este Proyecto sobre la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” evaluará uno de los aspectos más importantes de la biología molecular del cáncer, el control del ciclo celular.</p>
-<hr />
+<p> </p>
 </div>
 </div>
 <div id="estrategia-de-divulgacion" class="section level3">
 <h3>Estrategia de divulgación</h3>
 <p>Este Proyecto acerca de la “Evaluación de las proteínas del ciclo celular en el cáncer de pene” incrementará el conocimiento que se tiene acerca de la biología molecular del cáncer de pene. Este Proyecto permitirá una mejor comprensión de la relación existente entre las características morfológicas y virales de las células tumorales y el control del ciclo celular. Mediante esto, este Proyecto permitirá evaluar y validar estudios similares que se han o se están llevando a cabo centrados en el área de investigación del cáncer de pene. Todos estos resultados serán puestos a disposición de la comunidad científica nacional e internacional y del público en general interesado de manera abierta y gratuita.</p>
 <p>Se buscará la difusión de los resultados de esta investigación mediante canales académicos y no académicos. En el ámbito académico, los resultados se divulgarán mediante Congresos y Simposios, ya sea organizados por la Universidad del Norte u otras instituciones académicas, y el reporte de investigación final será enviado para publicación a una revista científica internacional indexada evaluada por pares y con opción de acceso libre al artículo publicado. En el ámbito no académico, estos resultados se divulgarán al público en general mediante entrevistas radiales y televisivas, además de medios impresos y digitales, y redes sociales.</p>
-<hr />
+<p> </p>
 </div>
 <div id="referencias" class="section level3 unnumbered">
 <h3>Referencias</h3>
@@ -483,8 +511,11 @@ div.tocify {
 <script>
 
 // add bootstrap table styles to pandoc tables
-$(document).ready(function () {
+function bootstrapStylePandocTables() {
   $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
 });
 
 
@@ -495,7 +526,7 @@ $(document).ready(function () {
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
