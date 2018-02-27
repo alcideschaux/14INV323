@@ -1,0 +1,83 @@
+---
+title: "Estadística correlativa"
+---
+
+**Fecha de última actualización:** `r Sys.Date()`
+
+***
+
+```{r Datos, message = FALSE, warning = FALSE}
+# Librerías
+library(simpleR)
+library(tidyr)
+library(corrplot)
+library(PerformanceAnalytics)
+
+# Opciones globales
+opts_chunk$set(message = FALSE, warning = FALSE)
+
+# Datos y guiones
+load("../Data/323.Rdata")
+
+# Valores P para las matrices
+cor.mtest <- function(mat, conf.level = 0.95){
+  mat <- as.matrix(mat)
+    n <- ncol(mat)
+    p.mat <- lowCI.mat <- uppCI.mat <- matrix(NA, n, n)
+    diag(p.mat) <- 0
+    diag(lowCI.mat) <- diag(uppCI.mat) <- 1
+    for(i in 1:(n-1)){
+        for(j in (i+1):n){
+            tmp <- cor.test(mat[,i], mat[,j], conf.level = conf.level)
+            p.mat[i,j] <- p.mat[j,i] <- tmp$p.value
+            lowCI.mat[i,j] <- lowCI.mat[j,i] <- tmp$conf.int[1]
+            uppCI.mat[i,j] <- uppCI.mat[j,i] <- tmp$conf.int[2]
+        }
+    }
+    return(list(p.mat, lowCI.mat, uppCI.mat))
+}
+```
+
+# Matrices de correlación
+```{r cor}
+df <- DF %>% select(p53v:m2d)
+M <- df %>% cor(use = "complete.obs")
+res <- cor.mtest(df)
+```
+
+## Coeficientes de correlación
+```{r cor_coef}
+corrplot(M, method = "number")
+corrplot(M)
+corrplot.mixed(M, lower = "color", upper = "number")
+```
+
+***
+
+## Valores P
+```{r cor_pvalues}
+corrplot(M, p.mat = res[[1]], insig = "p-value", sig.level = -1)
+```
+
+***
+
+## Agrupación por cúmulos
+```{r cor_hclust}
+corrplot(M, method = "color", order = "hclust", addrect = 2)
+```
+
+***
+
+# Matriz de correlación global
+```{r cor_chart}
+chart.Correlation(df, pch = 2)
+col <- colorRampPalette(c("blue", "white", "red"))(20)
+```
+
+***
+
+# Mapa de calor con agrupamiento jerárquico
+```{r cor_heatmap}
+heatmap(x = M, col = col, symm = TRUE)
+```
+

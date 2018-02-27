@@ -1,0 +1,124 @@
+---
+title: "Protocolo"
+csl: ama.csl
+bibliography: Referencias.bib
+---
+
+### Descripción
+Esta sección contiene el protocolo utilizado para la ejecución del Proyecto "Evaluación de las proteínas del ciclo celular en el cáncer de pene", gestionado por la Dirección de Investigación y Divulgación Científica de la Universidad del Norte. El Programa se ejecuta dentro del *Programa Paraguayo para el Desarrollo de la Ciencia y la Tecnología* (PROCIENCIA), Proyecto 14-INV-323, con fondos adjudicados por el *Consejo Nacional de Ciencia y Tecnología* (CONACYT) de la República del Paraguay según Resolución No. 437/2014.
+
+\   
+
+### Equipo de investigadores
+#### Investigador Principal
+El Investigador Principal del proyecto fue el **Prof. Dr. Alcides Chaux**, Director de Investigación y Divulgación Científica de la Universidad del Norte. El Investigador Principal estuvo a cargo del diseño y supervisión del Proyecto, del análisis de datos, y de la redacción de informes de investigación y documentos relacionados.
+
+\   
+
+#### Asistente de Investigación
+La Asistente de Investigación fue la **Bioq. Anahí Martínez de Chaux**. La Asistente de Investigación estuvo a cargo del manejo de la toma de muestras, interpretación de los resultados de los estudios laboratoriales, recolección y análisis de datos, y redacción de informes de investigación y documentos relacionados.
+
+\   
+
+### Objetivos del proyecto
+#### Objetivos principales
+Los objetivos principales de este proyecto se agruparon en 2 categorías:
+
+- Incrementar el conocimiento acerca de la biología molecular del cáncer de pene, con énfasis en la evaluación del ciclo celular.
+- Ofrecer un programa de entrenamiento efectivo en investigación científica, orientado a la adquisición de habilidades concretas para el diseño, gestión y ejecución de proyectos de investigación.
+
+\   
+
+#### Objetivos principales específicos
+Los objetivos específicos de este proyecto se agruparon en 2 categorías:
+
+- Evaluar visual y digitalmente la expresión inmunohistoquímica de proteínas relacionadas al ciclo celular en carcinomas escamosos del pene, determinando su asociación con características histopatológicas y virales.
+- Entrenar en el diseño de proyectos de investigación, recolección de datos, morfología y biología molecular del cáncer de pene, análisis estadístico de datos, programación en R, utilización de RStudio, herramientas de ciencia de datos, interpretación de resultados, y redacción y publicación de informes de investigación.
+
+\   
+
+### Antecedentes
+Debido a factores aún no totalmente caracterizados el cáncer de pene presenta una alta incidencia en el Paraguay comparada con la observada en países desarrollados.[@Chaux2013] Esto permite la explotación de un nicho de investigación centrado en la patología del cáncer de pene en nuestro país. Tras varios años de estar realizando investigaciones en la morfología, características clínicas y epidemiológicas, y factores pronósticos patológicos[@Chaux2010b] hemos incursionado en el campo de la biología molecular del cáncer de pene.[@Chaux2013a; @Chaux2014; @Bezerra2014; @Faraj2015]
+
+Uno de los problemas principales dentro de este tópico es la falta de información detallada y profunda acerca de la biología molecular del cáncer de pene. El conocimiento acabado acerca de la biología del cáncer de pene permitiría comprender cómo se origina y por qué presenta las particularidades epidemiológicas observadas. Más aún, este conocimiento podría ser útil para el desarrollo de estrategias clínicas más efectivas, con diagnósticos más significativos y tratamientos mejor orientados.[@Gerber2008]
+
+Dentro de nuestro programa de investigación en cáncer de pene hemos recolectado a lo largo de dos décadas más de 100 muestras de tejido tumoral y construido a partir de estas muestras 4 microarrays tisulares (TMA, por *tissue microarray*). Utilizando estos 4 TMA hemos iniciado hace 2 años nuestra investigación en la biología molecular del cáncer de pene, estudiando varias vías metabólicas tales como las de blanco de rapamicina en mamíferos y la del receptor epidérmico del factor de crecimiento.[@Chaux2014; @Chaux2013a] Hemos estado publicando los resultados de estas investigaciones en revistas internacionales indexadas evaluadas por pares, estableciéndonos firmemente en el frente de avance de esta área de la Ciencia. Sin embargo, aún quedan muchas vías metabólicas por estudiar, sobre todo las directamente relacionadas con el control del crecimiento y diferenciación de las células tumorales.
+
+Considerando la escasa tradición científica seria en el campo de la biología molecular del cáncer en nuestro país y la imperiosa necesidad de educar una generación de nuevos científicos, proponemos este proyecto denominado "Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene". Mediante este proyecto se entrenará a la Asistente de investigación en el diseño de estudios de investigación, recolección de datos, análisis estadístico y programación de paquetes informáticos, interpretación de resultados, y redacción y presentación de informes de investigación. Este entrenamiento estará centrado en la ejecución específica de este proyecto, por lo que se espera generar habilidades y capacidades efectivas para la investigación científica.
+
+\   
+
+### Marco teórico
+El cáncer de pene es un tumor infrecuente en países desarrollados de Norteamérica y Europa, representando, sin embargo, un serio problema de salud pública en países en vías de desarrollo.[@Siegel2015; @Bleeker2009] La incidencia es particularmente alta en países como Brasil y Paraguay, donde las tasas son de hasta 4 veces mayores a las observadas en países del primer mundo.[@Chaux2013]
+
+No existen explicaciones satisfactorias para estas variaciones geográficas, pero factores de riesgo tales como la falta de circuncisión, fimosis, tabaquismo, antecedentes de desgarros peneanos, enfermedades inflamatorias crónicas, pobre higiene genital, y ciertas infecciones virales podrían tener alguna influencia en las regiones con mayor incidencia.[@Bleeker2009; @Chaux2013]
+
+La mayoría de los cánceres peneanos son carcinomas escamosos, reconociéndose un variado espectro de subtipos histológicos distintos, cada uno con características clinicopatológicas y pronósticas particulares.[@Chaux2012] El desarrollo del cáncer de pene sigue una vía patogénica bimodal, una asociada con la infección por el virus del papiloma humano (HPV) y otra independiente de la infección viral.[@Chaux2012a]
+
+A pesar de que el cáncer de pene es más frecuentemente una enfermedad loco-regional, se observa diseminación sistémica y metástasis a distancia en hasta el 40% de los pacientes. En este contexto, la muerte por cáncer diseminado aparece habitualmente dentro de los 2 a 3 años del diagnóstico inicial.[@Pizzocaro2010] Mientras que la cirugía y la radioterapia son las opciones de elección en pacientes con tumores localizados, la quimioterapia es la opción principal para aquellos con enfermedad diseminada. Desafortunadamente, las tasas de respuesta al tratamiento quimioterapéutico están lejos de ser aceptables.[@Sonpavde2013] Por lo tanto, se requieren de otros enfoques, especialmente aquellos que involucran el uso de terapias dirigidas.[@Gerber2008]
+
+Las terapias dirigidas han cambiado significativamente el tratamiento del cáncer durante los últimos 10 años. Al involucrar mecanismos de acción distintos a los de la quimioterapia citotóxica tradicional, suelen ser mejor toleradas, asociándose con menos efectos secundarios adversos. Estos fármacos son parte hoy en día del tratamiento de muchos tumores malignos.[@Gerber2008] 
+
+Sin embargo, no existen protocolos de tratamiento dirigido para pacientes con cáncer de pene diseminado, principalmente por dos razones. La primera está relacionada con la rareza de estos tumores en países desarrollados en los que estos fármacos están en evaluación o aprobados para su uso clínico. La segunda se relaciona con la escasez de reportes de investigación estudiando la biología molecular del cáncer de pene, buscando identificar alteraciones en vías metabólicas que sean de interés para el desarrollo de terapias dirigidas.
+
+El propósito del presente proyecto es evaluar la expresión inmunohistoquímica de diversas proteínas involucradas en el control del ciclo celular en tumores peneanos, evaluando la asociación entre los niveles de expresión, las características histopatológicas y la presencia de HPV.
+
+\   
+
+### Plan de trabajo
+Se evaluaron los niveles de expresión inmunohistoquímica de 4 proteínas relacionadas con el ciclo celular (p53, Ki67, ciclina D1 y MDM2) en 113 muestras tisulares de carcinomas escamosos.
+
+Las muestras tisulares fueron obtenidas de los casos de consulta del Investigador Principal y consistieron en tejido tumoral fijado en formol al 10% y embebido en parafina. A partir de estas muestras tisulares se confeccionaron 4 TMA en el TMA Lab Core de la Johns Hopkins University (Baltimore, MD), siguiendo un protocolo previamente publicado.[@Fedor2005]
+
+A partir de estos bloques de TMA se obtuvieron cortes tisulares que fueron teñidos con hematoxilina y eosina (HE). Las tinciones inmunohistoquímicas fueron llevadas a cabo siguiendo protocolos previamente publicados.[@Chaux2014a; @Chaux2013c; @Munari2015; @Bezerra2015] Los TMA correspondientes a las tinciones con HE e inmunohistoquímica se encuentran almacenadas en los archivos tisulares del Investigador Principal.
+
+La medición se realizó visualmente y mediante análisis digital de imágenes. Posteriormente se analizaron estos niveles de expresión, evaluando su rol en la alteración del ciclo celular de las células tumorales y su asociación con características morfológicas del tumor. Este proceso requerió el uso intensivo de herramientas de ciencias de datos tales como R/RStudio, ImageJ, MarkDown, y similares.
+
+La hipótesis básica de trabajo fue que existen alteraciones específicas de vías metabólicas particulares en las células tumorales del carcinoma escamoso que son evidenciables de una forma más objetiva mediante el análisis digital de imágenes. Asimismo, existirían correlaciones entre las expresiones inmunohistoquímicas de ciertas proteínas relacionadas al ciclo celular y las características morfológicas del tumor, lo que sugeriría mecanismos oncogénicos particulares y posiblemente blancos terapéuticos específicos.
+
+El uso de estos TMA para investigación fue aprobado por el Institutional Board Review (IBR) de la Johns Hopkins University (Baltimore, MD).
+
+El Proyecto estuvo dividido en 5 fases: diagnóstico de las lesiones tumorales, evaluación de microarrays tisulares, confección de la base de datos, análisis estadístico, y redacción del informe de investigación. Estas fases se describen a continuación.
+
+**1) Diagnóstico de las lesiones tumorales:** Primeramente se procedió a la clasificación de los 4 TMA disponibles conteniendo muestras tisulares de los casos de cáncer de pene. Se identificaron las láminas histológicas completas correspondientes a estos casos y se procedió a la clasificación histopatológica de las lesiones tumorales, usando criterios previamente establecidos.[@Chaux2010b; @Chaux2012] Esta evaluación se realizó sobre muestras tisulares teñidas con HE.
+
+**2) Evaluación de microarrays tisulares:** Una vez que todas las lesiones tumorales fueron clasificadas se procedió a la evaluación visual de la expresión inmunohistoquímica de proteínas relacionadas con el ciclo celular. Esta evaluación se llevó a cabo en un microscopio Zeiss AxioLab 2. Se estimó visualmente los niveles de expresión utilizando una escala semicuantitativa previamente desarrollada y validada.[@Chaux2013b] Tras la evaluación visual se procedió a digitalizar los TMA, utilizando una técnica previamente descrita.[@Chaux2014a] Posteriormente se procedió al análisis de las imágenes utilizando un protocolo de análisis digital previamente desarrollado y publicado.[@Chaux2013a]
+
+**3) Confección de la base de datos:** Tras la recolección de datos visuales y digitales se confeccionó una base de datos en la que consignó toda la información recolectada hasta el momento, incluyendo los datos histopatológicos y la evaluación visual y digital de cada uno de los casos de cáncer de pene. Esta base de datos está disponible gratuitamente para todos los investigadores a través de este repositorio.
+
+**4) Análisis estadístico:** Se procedió al análisis estadístico de los datos. El análisis de datos se realizó utilizando el lenguaje de programación R.[@RCoreTeam] A través de este repositorio, se publica el código del análisis estadístico.
+
+**5) Redacción de informes de investigación:** Como fase final se redactó un informe de investigación reportando los resultados del proyecto.
+
+\   
+
+### Relevancia
+#### Relevancia social
+La implementación de este Proyecto sobre la "Evaluación de las Proteínas del Ciclo Celular en el Cáncer de pene" permitirá obtener un conocimiento más acabado y preciso acerca de la biología molecular del cáncer. Este Proyecto ayudará no sólo a comprender mejor cómo se origina y progresa la enfermedad sino también dará pistas acerca de cómo ofrecer mejores opciones terapéuticas a los pacientes afectos.
+
+Considerando que el Paraguay es uno de los países con la incidencia más alta de cáncer de pene en el mundo, la importancia social de este conocimiento es evidente. Más aún, considerando que las muestras de tejido tumoral corresponden a pacientes paraguayos, esto permitirá que los resultados sean aplicables directamente a los pacientes afectos, ya que no se tratará de información importada o llevada a cabo en otras poblaciones.
+
+\   
+
+#### Relevancia científica
+Debido a la rareza del cáncer de pene en países desarrollados el conocimiento disponible acerca de su biología molecular es escaso. Este Proyecto sobre la "Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene" permitirá estudiar los niveles de expresión inmunohistoquímica de proteínas relacionadas al ciclo celular, investigando alteraciones metabólicas en células tumorales y evaluando su asociación con características histopatológicas y virales. Todo esto permitirá incrementar el conocimiento científico disponible acerca de la enfermedad.
+
+Además, este Proyecto permitirá continuar con nuestra línea de investigación en el cáncer de pene, dentro de un programa de iniciación científica, ofreciendo un entrenamiento formal en ciencia de datos e incrementando por lo tanto el capital humano disponible para realizar investigación.
+
+\   
+
+#### Relevancia contemporánea
+El conocimiento puramente morfológico o clínico ya no es suficiente hoy en día para comprender una enfermedad, mucho menos para su adecuado diagnóstico y tratamiento. Actualmente se requiere un conocimiento más profundo acerca de la biología molecular de las enfermedades, buscando mejores modelos teóricos mediante los cuales desarrollar estrategias más efectivas para el manejo de los pacientes.
+
+Dentro de esta línea, este Proyecto sobre la "Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene" evaluará uno de los aspectos más importantes de la biología molecular del cáncer, el control del ciclo celular.
+
+\   
+
+### Estrategia de divulgación
+Este Proyecto acerca de la "Evaluación de las Proteínas del Ciclo Celular en el Cáncer de Pene" incrementará el conocimiento que se tiene acerca de la biología molecular del cáncer de pene. Este Proyecto permitirá una mejor comprensión de la relación existente entre las características morfológicas y virales de las células tumorales y el control del ciclo celular. Mediante esto, este Proyecto permitirá evaluar y validar estudios similares que se han o se están llevando a cabo centrados en el área de investigación del cáncer de pene. Todos estos resultados serán puestos a disposición de la comunidad científica nacional e internacional y del público en general interesado de manera abierta y gratuita.
+
+Se buscará la difusión de los resultados de esta investigación mediante canales académicos y no académicos. En el ámbito académico, los resultados se divulgarán mediante Congresos y Simposios, ya sea organizados por la Universidad del Norte u otras instituciones académicas, y el reporte de investigación final será enviado para publicación a una revista científica internacional indexada evaluada por pares y con opción de acceso libre al artículo publicado. En el ámbito no académico, estos resultados se divulgarán al público en general mediante entrevistas radiales y televisivas, además de medios impresos y digitales, y redes sociales.
+
+\   
+
+### Referencias

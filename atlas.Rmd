@@ -1,0 +1,44 @@
+---
+title: "Atlas"
+---
+
+En esta sección se incluye fotografías, capturas de pantalla y microfotografías documentando y evidenciando el procedimiento utilizado para la inspección visual y la evaluación digital de la expresión imunohistoquímica de proteínas relacionadas con el cáncer de pene.
+
+***
+
+## Hematoxilina & eosina
+
+![**Microarray tisular (hematoxilina y eosina, x10).** Microfotografía a bajo aumento mostrando los focos de tejido que componen el microarray tisular (MAT). Cada foco del MAT corresponde a un cilindro de 3 mm de tejido tumoral seccionado transversalmente.](fig/tma.jpg)
+
+***
+
+![**Microarray tisular (hematoxilina & eosina, x50).** Microfotografía a mediano aumento mostrando el aspecto histológico de un carcinoma escamoso infiltrante de tipo usual moderadamente diferenciado.](fig/he.jpg)
+
+***
+
+## Inspección visual
+
+![**Expresión inmunohistoquímica de p53 (DAB, x50).** Foco de microarray tisular mostrando células tumorales positivas para p53 teñidas de marrón. La tinción es exclusivamente nuclear.](fig/p53.jpg)
+
+***
+
+![**Expresión inmunohistoquímica de Ki-67 (DAB, x50).** Foco de microarray tisular mostrando células tumorales positivas para Ki-67 teñidas de marrón. La tinción es exclusivamente nuclear.](fig/ki67.jpg)
+
+***
+
+![**Expresión inmunohistoquímica de ciclina D1 (DAB, x50).** Foco de microarray tisular mostrando algunas células tumorales positivas para ciclina D1 teñidas de marrón. La tinción es exclusivamente nuclear.](fig/cycd1.jpg)
+
+***
+
+![**Expresión inmunohistoquímica de MDM2 (DAB, x50).** Foco de microarray tisular mostrando células tumorales positivas para MDM2 teñidas de marrón. La tinción es exclusivamente nuclear.](fig/mdm2.jpg)
+
+***
+
+## Evaluación digital
+![**ImageJ con la extensión de _ImmunoRatio_.** Captura de pantalla que muestra el procedimiento utilizado para la evaluación digital de los focos de los microarray tisulares. Se muestra la extensión de _ImmunoRatio_ ejecutándose desde ImageJ sobre un sistema Linux Ubuntu 16.04 LTS.](fig/imagej.png)
+
+***
+
+![**Hoja de resultado del análisis digital.** Hoja de resultado del programa ImageJ utilizando la extensión de _ImmunoRatio_ para estimar el porcentaje de células tumorales positivas para el marcador evaluado (p53 en este caso). El panel superior muestra 1 foco de microarray tisular y el panel inferior el resultado del análisis digital del foco correspondiente. En el área superior de cada imagen se indica el porcentaje estimado de positividad.](fig/output.jpg)
+
+***

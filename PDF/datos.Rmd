@@ -1,0 +1,79 @@
+---
+title: "Base de Datos"
+---
+
+En esta sección se presenta la base de datos completa de los casos estudiados, incluyendo los valores obtenidos mediante la inspección visual y la evaluación digital. Se incluyen dos marcos de datos, el primero mostrando los valores obtenidos de hecho, y el segundo mostrando los valores máximos por cada caso. El libro de código describiendo cada variable se incluye con cada marco de datos.
+
+```{r DT, message = FALSE, warning = FALSE}
+# Librer?as requeridas
+library(DT)
+library(dplyr)
+
+# Cargando datos
+load("../Data/323.Rdata")
+```
+
+***
+
+### Por valores de hecho
+En esta subsección se muestra el marco de datos conteniendo todos los valores obtenidos de hecho, en cada foco de los microarrays tisulares (TMA). El libro de código se incluye a continuación:
+
+- **caso:** variable categórica indicando la identificación del caso evaluado. En total, se evaluaron ``r length(unique(DF$caso))`` casos.
+- **foco:** variable numérica indicando el foco ("spot") del TMA evaluado. Se debe tener en cuenta que cada caso presenta varios focos. El total de focos evaluados fue de ``r nrow(DF)`` focos, luego de excluir focos con tejido normal de control y focos con menos del 10% de tejido tumoral.
+- **subtipo:** variable categórica indicando el subtipo histologico del tumor observado en el foco. Los valores posibles incluyen los siguientes: ``r levels(DF$subtipo)``.
+- **grado:** variable categórica indicando el grado histológico del tumor observando en el foco. Los valores posibles incluyen los siguientes: ``r levels(DF$grado)``.
+- **p53v:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `p53`, estimado mediante inspección `visual`.
+- **p53d:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `p53`, estimado mediante análisis `digital`.
+- **k67v:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `Ki67`, estimado mediante inspección `visual`.
+- **k67d:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `Ki67`, estimado mediante análisis `digital`.
+- **cd1v:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `ciclina D1`, estimado mediante inspección `visual`.
+- **cd1d:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `ciclina D1`, estimado mediante análisis `digital`.
+- **m2v:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `MDM2`, estimado mediante inspección `visual`.
+- **m2d:** variable numérica indicando el porcentaje de células tumorales positivas para la expresión inmunohistoquímica de `MDM2`, estimado mediante análisis `digital`.
+
+```{r DF}
+DF %>%
+    select(
+        -figure,
+        -tma
+    ) %>% 
+    datatable(
+        rownames = FALSE,
+        filter = "none",
+        options = list(
+            autoWidth = TRUE,
+            pageLength = 5,
+            language = list(url = "http://cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json")
+        )
+    )
+```
+
+***
+
+### Por valores máximos
+En esta subsección se muestra el marco de datos conteniendo todos los valores máximos de expresión de cada proteína, resumidos por caso. El libro de código se incluye a continuación:
+
+- **caso:** variable categórica indicando la identificación del caso evaluado. En total, se evaluaron ``r length(unique(DF$caso))`` casos.
+- **subtipo:** variable categórica indicando el subtipo histologico del tumor observado en el foco. Los valores posibles incluyen los siguientes: ``r levels(DF$subtipo)``.
+- **grado:** variable categórica indicando el grado histológico del tumor observando en el foco. Los valores posibles incluyen los siguientes: ``r levels(DF$grado)``.
+- **p53v:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `p53`, estimado mediante inspección `visual`.
+- **p53d:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `p53`, estimado mediante análisis `digital`.
+- **k67v:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `Ki67`, estimado mediante inspección `visual`.
+- **k67d:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `Ki67`, estimado mediante análisis `digital`.
+- **cd1v:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `ciclina D1`, estimado mediante inspección `visual`.
+- **cd1d:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `ciclina D1`, estimado mediante análisis `digital`.
+- **m2v:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `MDM2`, estimado mediante inspección `visual`.
+- **m2d:** variable numérica indicando el porcentaje `máximo` de células tumorales positivas para la expresión inmunohistoquímica de `MDM2`, estimado mediante análisis `digital`.
+
+```{r DF_sum}
+DF_sum %>%
+    datatable(
+        rownames = FALSE,
+        filter = "none",
+        options = list(
+            autoWidth = TRUE,
+            pageLength = 5,
+            language = list(url = "http://cdn.datatables.net/plug-ins/1.10.11/i18n/Spanish.json")
+        )
+    )
+```

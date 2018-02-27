@@ -1,0 +1,101 @@
+---
+title: "PROYECTO 14-INV-323"
+subtitle: "Evaluación de las proteínas del ciclo celular en el cáncer de pene"
+author: "INFORME FINAL"
+output: 
+  beamer_presentation: 
+    colortheme: dolphin
+lang: es-ES
+---
+
+```{r Datos, message = FALSE, warning = FALSE}
+# Librerías
+library(simpleRspa)
+
+# Opciones globales
+opts_chunk$set(message = FALSE, warning = FALSE, fig.height = 6)
+
+# Datos y guiones
+load("../Data/323.Rdata")
+```
+
+# Estadistica descriptiva
+## Evaluación anatomopatológica
+### Subtipos histológicos
+```{r subtipo}
+x <- DF_sum$subtipo
+g_nice(x)
+tbl_nice(x)
+```
+
+
+### Grados histológicos
+```{r grado}
+x <- DF_sum$grado
+g_nice(x)
+tbl_nice(x)
+```
+
+***
+
+## Inspección visual
+### Expresión de p53
+```{r p53v}
+x <- DF$p53v
+g_nice(x, bin = 10, max_break = 100)
+tbl_nice(x)
+```
+
+### Expresión de Ki67
+```{r k67v}
+x <- DF$k67v
+g_nice(x, bin = 10, max_break = 100)
+tbl_nice(x)
+```
+
+<br>
+
+### Expresión de Ciclina D1
+```{r cd1v}
+x <- DF$cd1v
+g_nice(x, bin = 10, max_break = 100)
+tbl_nice(x)
+```
+
+### Expresión de MDM2
+```{r m2v}
+x <- DF$m2v
+g_nice(x, bin = 10, max_break = 100)
+tbl_nice(x)
+```
+
+***
+
+## Evaluación digital
+### Expresión de p53
+```{r p53d}
+x <- DF$p53d
+g_nice(x, max_break = 70)
+tbl_nice(x)
+```
+
+### Expresión de Ki67
+```{r k67d}
+x <- DF$k67d
+g_nice(x, max_break = 40)
+tbl_nice(x)
+```
+
+### Expresión de Ciclina D1
+```{r cd1d}
+x <- DF$cd1d
+g_nice(x, bin = 10)
+tbl_nice(x)
+```
+
+### Expresión de MDM2
+```{r m2d}
+x <- DF$m2d
+g_nice(x, bin = 1, max_break = 8)
+tbl_nice(x)
+```

@@ -1,0 +1,103 @@
+---
+title: "Estadistica Asociativa"
+output: html_document
+---
+
+```{r Datos, message = FALSE, warning = FALSE}
+# Librerías
+library(simpleRspa)
+library(tidyr)
+
+# Opciones globales
+opts_chunk$set(message = FALSE, warning = FALSE)
+
+# Datos y guiones
+load("../Data/323.Rdata")
+
+# Etiquetas para diagramas de dispersión
+xaxis <- "Inspección visual"
+yaxis  <- "Evaluación digital"
+```
+
+# **Comparación de expresión**
+## p53
+```{r comparar_p53}
+df <- DF %>% 
+    select(p53v:p53d) %>% 
+    gather(marker, value, p53v:p53d)
+x <- log10(df$value + 1)
+y <- factor(df$marker)
+g2_density(x, y)
+g2_boxplot(x, y)
+
+tbl_nice(df$value, y)
+tbl_test(x, y)
+
+x <- log10(DF$p53v + 1)
+y <- log10(DF$p53d + 1)
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)
+tbl_cor(x, y)
+```
+
+***
+
+## Ki67
+```{r comparar_k67}
+df <- DF %>% 
+    select(k67v:k67d) %>% 
+    gather(marker, value)
+x <- log10(df$value + 1)
+y <- factor(df$marker)
+g2_density(x, y)
+g2_boxplot(x, y)
+
+tbl_nice(df$value, y)
+tbl_test(x, y)
+
+x <- log10(DF$k67v + 1)
+y <- log10(DF$k67d + 1)
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)
+tbl_cor(x, y)
+```
+
+***
+
+## Ciclina D1
+```{r comparar_cd1}
+df <- DF %>% 
+    select(cd1v:cd1d) %>% 
+    gather(marker, value)
+x <- log10(df$value + 1)
+y <- factor(df$marker)
+g2_density(x, y)
+g2_boxplot(x, y)
+
+tbl_nice(df$value, y)
+tbl_test(x, y)
+
+x <- log10(DF$cd1v + 1)
+y <- log10(DF$cd1d + 1)
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)
+tbl_cor(x, y)
+```
+
+***
+
+## MDM2
+```{r comparar_m2}
+df <- DF %>% 
+    select(m2v:m2d) %>% 
+    gather(marker, value)
+x <- log10(df$value + 1)
+y <- factor(df$marker)
+g2_density(x, y)
+g2_boxplot(x, y)
+
+tbl_nice(df$value, y)
+tbl_test(x, y)
+
+x <- log10(DF$m2v + 1)
+y <- log10(DF$m2d + 1)
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)
+tbl_cor(x, y)
+```

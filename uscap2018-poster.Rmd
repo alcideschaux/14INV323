@@ -1,0 +1,67 @@
+```{r, fig.width=10, fig.height=4}
+load("Data/323.Rdata")
+
+library(ggplot2)
+library(dplyr)
+library(tidyr)
+
+g1 <- DF %>% 
+    select(p53v:p53d) %>% 
+    gather(marker, value, p53v:p53d) %>% 
+    ggplot(aes(x = marker, y = value)) +
+    stat_summary(fun.data = "mean_cl_boot", color = "red", size = 1.5) +
+    geom_point() +
+    scale_x_discrete(labels = c("Digital", "Visual")) +
+    labs(x = "", y = "% positive cells", title = "A")
+g2 <- ggplot(DF, aes(x = p53v, y = p53d)) +
+    geom_smooth(method = lm, color = "red") +
+    geom_jitter() +
+    labs(x = "Visual", y = "Digital")
+g3 <- DF %>% 
+    select(k67v:k67d) %>% 
+    gather(marker, value, k67v:k67d) %>% 
+    ggplot(aes(x = marker, y = value)) +
+    stat_summary(fun.data = "mean_cl_boot", color = "red", size = 1.5) +
+    geom_point() +
+    scale_x_discrete(labels = c("Digital", "Visual")) +
+    labs(x = "", y = "% positive cells", title = "B")
+g4 <- ggplot(DF, aes(x = k67v, y = k67d)) +
+    geom_smooth(method = lm, color = "red") +
+    geom_jitter() +
+    labs(x = "Visual", y = "Digital")
+g5 <- DF %>% 
+    select(cd1v:cd1d) %>% 
+    gather(marker, value, cd1v:cd1d) %>% 
+    ggplot(aes(x = marker, y = value)) +
+    stat_summary(fun.data = "mean_cl_boot", color = "red", size = 1.5) +
+    geom_point() +
+    scale_x_discrete(labels = c("Digital", "Visual")) +
+    labs(x = "", y = "% positive cells", title = "C")
+g6 <- ggplot(DF, aes(x = cd1v, y = cd1d)) +
+    geom_smooth(method = lm, color = "red") +
+    geom_jitter() +
+    labs(x = "Visual", y = "Digital")
+g7 <- DF %>% 
+    select(m2v:m2d) %>% 
+    gather(marker, value, m2v:m2d) %>% 
+    ggplot(aes(x = marker, y = value)) +
+    stat_summary(fun.data = "mean_cl_boot", color = "red", size = 1.5) +
+    geom_point() +
+    scale_x_discrete(labels = c("Digital", "Visual")) +
+    labs(x = "", y = "% positive cells", title = "D")
+g8 <- ggplot(DF, aes(x = m2v, y = m2d)) +
+    geom_smooth(method = lm, color = "red") +
+    geom_jitter() +
+    labs(x = "Visual", y = "Digital")
+
+
+library(gridExtra)
+
+grid.arrange(
+    g1, g3, g5, g7,
+    g2, g4, g6, g8,
+    nrow = 2
+)
+
+```
+

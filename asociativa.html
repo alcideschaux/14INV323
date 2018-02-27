@@ -11,7 +11,7 @@
 
 
 
-<title>Estadística asociativa</title>
+<title>Estadistica Asociativa</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,8 +24,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -166,7 +168,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
+  window.initializeCodeFolding("show" === "show");
 });
 </script>
 
@@ -329,32 +331,24 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Estadística asociativa</h1>
+<h1 class="title toc-ignore">Estadistica Asociativa</h1>
 
 </div>
 
 
-<p><strong>Fecha de última actualización:</strong> 2017-08-23</p>
-<hr />
 <pre class="r"><code># Librerías
-library(simpleR)
+library(simpleRspa)
 library(tidyr)
 
 # Opciones globales
 opts_chunk$set(message = FALSE, warning = FALSE)
 
 # Datos y guiones
-load(&quot;../Data/323.Rdata&quot;)
+load(&quot;Data/323.Rdata&quot;)
 
-# Diagrama de dispersión
-g2_cor &lt;- function(x, y) {
-    DF &lt;- data.frame(x, y)
-    ggplot(DF, aes(x, y)) +
-    geom_jitter(color = &quot;steelblue&quot;) +
-    geom_smooth(linetype = 3) +
-    labs(x = &quot;Inspección visual&quot;, y = &quot;Evaluación digital&quot;) +
-    theme_bw()
-}</code></pre>
+# Etiquetas para diagramas de dispersión
+xaxis &lt;- &quot;Inspección visual&quot;
+yaxis  &lt;- &quot;Evaluación digital&quot;</code></pre>
 <div id="comparacion-de-expresion" class="section level1">
 <h1><strong>Comparación de expresión</strong></h1>
 <div id="p53" class="section level2">
@@ -370,7 +364,7 @@ g2_density(x, y)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_p53-2.png" width="672" /></p>
 <pre class="r"><code>tbl_nice(df$value, y)</code></pre>
 <table>
-<caption>Summary table</caption>
+<caption>Tabla de Resumen</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -380,32 +374,32 @@ g2_density(x, y)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean</td>
+<td>Media</td>
 <td align="center">3.4</td>
 <td align="center">24.3</td>
 </tr>
 <tr class="even">
-<td>Standard deviation</td>
+<td>Desviación estándar</td>
 <td align="center">6.5</td>
 <td align="center">32.6</td>
 </tr>
 <tr class="odd">
-<td>Median</td>
+<td>Mediana</td>
 <td align="center">0.8</td>
 <td align="center">10.0</td>
 </tr>
 <tr class="even">
-<td>Interquartile range</td>
+<td>Rango intercuartilo</td>
 <td align="center">2.4</td>
 <td align="center">39.0</td>
 </tr>
 <tr class="odd">
-<td>Minimum</td>
+<td>Mínimo</td>
 <td align="center">0.0</td>
 <td align="center">0.0</td>
 </tr>
 <tr class="even">
-<td>Maximum</td>
+<td>Máximo</td>
 <td align="center">64.2</td>
 <td align="center">99.0</td>
 </tr>
@@ -413,28 +407,56 @@ g2_density(x, y)</code></pre>
 </table>
 <pre class="r"><code>tbl_test(x, y)</code></pre>
 <table>
-<caption>Mann-Whitney U test for the sum of ranks</caption>
+<caption>Prueba U de Mann-Whitney</caption>
 <thead>
 <tr class="header">
 <th></th>
-<th align="center">Value</th>
+<th align="center">Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>U-statistic</td>
+<td>Estadístico de la prueba (U)</td>
 <td align="center">82468</td>
 </tr>
 <tr class="even">
-<td>P statistic</td>
+<td>Estadístico P</td>
 <td align="center">2.6e-24</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>x &lt;- log10(DF$p53v + 1)
 y &lt;- log10(DF$p53d + 1)
-g2_cor(x, y)</code></pre>
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_p53-3.png" width="672" /></p>
+<pre class="r"><code>tbl_cor(x, y)</code></pre>
+<table>
+<caption>Correlación producto-momento de Pearson</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estadístico de la prueba</td>
+<td align="center">21.1</td>
+</tr>
+<tr class="even">
+<td>Grados de libertad</td>
+<td align="center">507</td>
+</tr>
+<tr class="odd">
+<td>Estadístico P</td>
+<td align="center">1.51e-71</td>
+</tr>
+<tr class="even">
+<td>Coeficiente de correlación (Intervalo de Confianza del 95%)</td>
+<td align="center">0.68 (0.64, 0.73)</td>
+</tr>
+</tbody>
+</table>
 <hr />
 </div>
 <div id="ki67" class="section level2">
@@ -450,7 +472,7 @@ g2_density(x, y)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_k67-2.png" width="672" /></p>
 <pre class="r"><code>tbl_nice(df$value, y)</code></pre>
 <table>
-<caption>Summary table</caption>
+<caption>Tabla de Resumen</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -460,32 +482,32 @@ g2_density(x, y)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean</td>
+<td>Media</td>
 <td align="center">2.1</td>
 <td align="center">29.3</td>
 </tr>
 <tr class="even">
-<td>Standard deviation</td>
+<td>Desviación estándar</td>
 <td align="center">2.3</td>
 <td align="center">29.2</td>
 </tr>
 <tr class="odd">
-<td>Median</td>
+<td>Mediana</td>
 <td align="center">1.4</td>
 <td align="center">15.0</td>
 </tr>
 <tr class="even">
-<td>Interquartile range</td>
+<td>Rango intercuartilo</td>
 <td align="center">1.4</td>
 <td align="center">43.0</td>
 </tr>
 <tr class="odd">
-<td>Minimum</td>
+<td>Mínimo</td>
 <td align="center">0.0</td>
 <td align="center">0.0</td>
 </tr>
 <tr class="even">
-<td>Maximum</td>
+<td>Máximo</td>
 <td align="center">33.0</td>
 <td align="center">99.0</td>
 </tr>
@@ -493,32 +515,60 @@ g2_density(x, y)</code></pre>
 </table>
 <pre class="r"><code>tbl_test(x, y)</code></pre>
 <table>
-<caption>Mann-Whitney U test for the sum of ranks</caption>
+<caption>Prueba U de Mann-Whitney</caption>
 <thead>
 <tr class="header">
 <th></th>
-<th align="center">Value</th>
+<th align="center">Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>U-statistic</td>
+<td>Estadístico de la prueba (U)</td>
 <td align="center">33618</td>
 </tr>
 <tr class="even">
-<td>P statistic</td>
+<td>Estadístico P</td>
 <td align="center">2.3e-91</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>x &lt;- log10(DF$k67v + 1)
 y &lt;- log10(DF$k67d + 1)
-g2_cor(x, y)</code></pre>
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_k67-3.png" width="672" /></p>
+<pre class="r"><code>tbl_cor(x, y)</code></pre>
+<table>
+<caption>Correlación producto-momento de Pearson</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estadístico de la prueba</td>
+<td align="center">16.3</td>
+</tr>
+<tr class="even">
+<td>Grados de libertad</td>
+<td align="center">500</td>
+</tr>
+<tr class="odd">
+<td>Estadístico P</td>
+<td align="center">2.14e-48</td>
+</tr>
+<tr class="even">
+<td>Coeficiente de correlación (Intervalo de Confianza del 95%)</td>
+<td align="center">0.59 (0.53, 0.64)</td>
+</tr>
+</tbody>
+</table>
 <hr />
 </div>
-<div id="cyclin-d1" class="section level2">
-<h2>Cyclin-D1</h2>
+<div id="ciclina-d1" class="section level2">
+<h2>Ciclina D1</h2>
 <pre class="r"><code>df &lt;- DF %&gt;% 
     select(cd1v:cd1d) %&gt;% 
     gather(marker, value)
@@ -530,7 +580,7 @@ g2_density(x, y)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_cd1-2.png" width="672" /></p>
 <pre class="r"><code>tbl_nice(df$value, y)</code></pre>
 <table>
-<caption>Summary table</caption>
+<caption>Tabla de Resumen</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -540,32 +590,32 @@ g2_density(x, y)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean</td>
+<td>Media</td>
 <td align="center">7.9</td>
 <td align="center">25.1</td>
 </tr>
 <tr class="even">
-<td>Standard deviation</td>
+<td>Desviación estándar</td>
 <td align="center">14.0</td>
 <td align="center">28.5</td>
 </tr>
 <tr class="odd">
-<td>Median</td>
+<td>Mediana</td>
 <td align="center">2.7</td>
 <td align="center">10.0</td>
 </tr>
 <tr class="even">
-<td>Interquartile range</td>
+<td>Rango intercuartilo</td>
 <td align="center">8.6</td>
 <td align="center">49.0</td>
 </tr>
 <tr class="odd">
-<td>Minimum</td>
+<td>Mínimo</td>
 <td align="center">0.0</td>
 <td align="center">0.0</td>
 </tr>
 <tr class="even">
-<td>Maximum</td>
+<td>Máximo</td>
 <td align="center">94.7</td>
 <td align="center">99.0</td>
 </tr>
@@ -573,28 +623,56 @@ g2_density(x, y)</code></pre>
 </table>
 <pre class="r"><code>tbl_test(x, y)</code></pre>
 <table>
-<caption>Mann-Whitney U test for the sum of ranks</caption>
+<caption>Prueba U de Mann-Whitney</caption>
 <thead>
 <tr class="header">
 <th></th>
-<th align="center">Value</th>
+<th align="center">Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>U-statistic</td>
+<td>Estadístico de la prueba (U)</td>
 <td align="center">87912</td>
 </tr>
 <tr class="even">
-<td>P statistic</td>
+<td>Estadístico P</td>
 <td align="center">9.5e-20</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>x &lt;- log10(DF$cd1v + 1)
 y &lt;- log10(DF$cd1d + 1)
-g2_cor(x, y)</code></pre>
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_cd1-3.png" width="672" /></p>
+<pre class="r"><code>tbl_cor(x, y)</code></pre>
+<table>
+<caption>Correlación producto-momento de Pearson</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estadístico de la prueba</td>
+<td align="center">18.7</td>
+</tr>
+<tr class="even">
+<td>Grados de libertad</td>
+<td align="center">509</td>
+</tr>
+<tr class="odd">
+<td>Estadístico P</td>
+<td align="center">5.31e-60</td>
+</tr>
+<tr class="even">
+<td>Coeficiente de correlación (Intervalo de Confianza del 95%)</td>
+<td align="center">0.64 (0.58, 0.69)</td>
+</tr>
+</tbody>
+</table>
 <hr />
 </div>
 <div id="mdm2" class="section level2">
@@ -610,7 +688,7 @@ g2_density(x, y)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_m2-2.png" width="672" /></p>
 <pre class="r"><code>tbl_nice(df$value, y)</code></pre>
 <table>
-<caption>Summary table</caption>
+<caption>Tabla de Resumen</caption>
 <thead>
 <tr class="header">
 <th></th>
@@ -620,32 +698,32 @@ g2_density(x, y)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Mean</td>
+<td>Media</td>
 <td align="center">0.7</td>
 <td align="center">4.4</td>
 </tr>
 <tr class="even">
-<td>Standard deviation</td>
+<td>Desviación estándar</td>
 <td align="center">0.5</td>
 <td align="center">10.9</td>
 </tr>
 <tr class="odd">
-<td>Median</td>
+<td>Mediana</td>
 <td align="center">0.5</td>
 <td align="center">0.0</td>
 </tr>
 <tr class="even">
-<td>Interquartile range</td>
+<td>Rango intercuartilo</td>
 <td align="center">0.2</td>
 <td align="center">2.0</td>
 </tr>
 <tr class="odd">
-<td>Minimum</td>
+<td>Mínimo</td>
 <td align="center">0.0</td>
 <td align="center">0.0</td>
 </tr>
 <tr class="even">
-<td>Maximum</td>
+<td>Máximo</td>
 <td align="center">7.9</td>
 <td align="center">70.0</td>
 </tr>
@@ -653,28 +731,56 @@ g2_density(x, y)</code></pre>
 </table>
 <pre class="r"><code>tbl_test(x, y)</code></pre>
 <table>
-<caption>Mann-Whitney U test for the sum of ranks</caption>
+<caption>Prueba U de Mann-Whitney</caption>
 <thead>
 <tr class="header">
 <th></th>
-<th align="center">Value</th>
+<th align="center">Valor</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>U-statistic</td>
+<td>Estadístico de la prueba (U)</td>
 <td align="center">138772</td>
 </tr>
 <tr class="even">
-<td>P statistic</td>
+<td>Estadístico P</td>
 <td align="center">4e-02</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>x &lt;- log10(DF$m2v + 1)
 y &lt;- log10(DF$m2d + 1)
-g2_cor(x, y)</code></pre>
+g2_cor(x, y, xaxis = xaxis, yaxis = yaxis)</code></pre>
 <p><img src="asociativa_files/figure-html/comparar_m2-3.png" width="672" /></p>
+<pre class="r"><code>tbl_cor(x, y)</code></pre>
+<table>
+<caption>Correlación producto-momento de Pearson</caption>
+<thead>
+<tr class="header">
+<th></th>
+<th align="center">Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Estadístico de la prueba</td>
+<td align="center">4.99</td>
+</tr>
+<tr class="even">
+<td>Grados de libertad</td>
+<td align="center">502</td>
+</tr>
+<tr class="odd">
+<td>Estadístico P</td>
+<td align="center">8.30e-07</td>
+</tr>
+<tr class="even">
+<td>Coeficiente de correlación (Intervalo de Confianza del 95%)</td>
+<td align="center">0.22 (0.13, 0.3)</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 

@@ -1,0 +1,29 @@
+name: "14INV323"
+
+navbar:
+    title: "14-INV-323"
+    left:
+        - text: "Protocolo"
+          href: index.html
+        - text: "Base de Datos"
+          href: datos.html
+        - text: "Resultados"
+          menu:
+            - text: "Estadística descriptiva"
+              href: descriptiva.html
+            - text: "Estadística asociativa"
+              href: asociativa.html
+            - text: "Estadística correlativa"
+              href: correlativa.html
+        - text: "Atlas"
+          href: atlas.html
+
+output:
+    html_document:
+        theme: cerulean
+        toc: yes
+        toc_float:
+            collapsed: true
+        code_folding: show
+
+output_dir: "."

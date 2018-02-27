@@ -24,8 +24,8 @@
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -34,10 +34,12 @@
   }
 </style>
 <script type="text/javascript">
-if (window.hljs && document.readyState && document.readyState === "complete") {
-   window.setTimeout(function() {
-      hljs.initHighlighting();
-   }, 0);
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
 }
 </script>
 
@@ -166,7 +168,7 @@ $(document).ready(function () {
 </style>
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("hide" === "show");
+  window.initializeCodeFolding("show" === "show");
 });
 </script>
 
@@ -334,7 +336,7 @@ div.tocify {
 </div>
 
 
-<p><strong>Fecha de última actualización:</strong> 2017-08-23</p>
+<p><strong>Fecha de última actualización:</strong> 2018-02-27</p>
 <hr />
 <pre class="r"><code># Librerías
 library(simpleR)
@@ -346,7 +348,7 @@ library(PerformanceAnalytics)
 opts_chunk$set(message = FALSE, warning = FALSE)
 
 # Datos y guiones
-load(&quot;../Data/323.Rdata&quot;)
+load(&quot;Data/323.Rdata&quot;)
 
 # Valores P para las matrices
 cor.mtest &lt;- function(mat, conf.level = 0.95){
